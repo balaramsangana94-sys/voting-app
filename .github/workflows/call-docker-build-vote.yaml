@@ -60,3 +60,12 @@ jobs:
         run: |
           sed -i "s|balaram91/voting-app-vote:[^\"]*|balaram91/voting-app-vote:v${{ github.run_number }}|g" k8s-specifications/vote-deployment.yaml
           echo 'Updated vote-deployment.yaml with image tag v${{ github.run_number }}'
+      - name: Configure git
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+      - name: Commit and push changes
+        run: |
+          git add k8s-specifications/vote-deployment.yaml
+          git commit -m "Update vote-deployment.yaml image tag to v${{ github.run_number }}" || echo "No changes to commit"
+          git push origin main
