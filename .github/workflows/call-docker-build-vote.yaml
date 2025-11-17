@@ -1,4 +1,7 @@
+# Top-level workflow permissions for repo write access
 name: Build Vote
+permissions:
+  contents: write
 # template source: https://github.com/dockersamples/.github/blob/main/templates/call-docker-build.yaml
 
 on:
